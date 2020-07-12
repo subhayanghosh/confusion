@@ -68,7 +68,7 @@ class Menu extends Component {
 
         return (
             <div className="container">
-                <div classaAme="row">
+                <div className="row">
                     <Media list>
                         {menu}
                     </Media>
