@@ -9,7 +9,7 @@ class DishDetail extends Component {
 
     monthConverter(month) {
         const i = parseInt(month);
-        const monthList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const monthList = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
         return monthList[i-1];
     }
 
@@ -17,7 +17,7 @@ class DishDetail extends Component {
         const day = date.slice(8, 10);
         const month = date.slice(5, 7);
         const year = date.slice(0, 4);
-        const formattedDate = this.monthConverter(month) + " " + day + "," + year;
+        const formattedDate = this.monthConverter(month) + " " + day + ", " + year;
         return formattedDate;
     }
 
@@ -38,7 +38,7 @@ class DishDetail extends Component {
     renderComments(comments) {
         const comment = comments.map( (commentDetail) => {
             return (
-                <ul className="list-unstyled">
+                <ul key={commentDetail.id} className="list-unstyled">
                     {commentDetail.comment}<br/><br/>-- {commentDetail.author}, {this.formatDate(commentDetail.date)}
                 </ul>
             )
@@ -61,12 +61,14 @@ class DishDetail extends Component {
 
     render () {
 
-        if (this.props.selectedDish != null) {
+        if (this.props.dish != null) {
             
             return (
-                <div className="row">
-                    {this.renderDish(this.props.selectedDish)}
-                    {this.renderComments(this.props.selectedDish.comments)}
+                <div className="container">
+                    <div className="row">
+                        {this.renderDish(this.props.dish)}
+                        {this.renderComments(this.props.dish.comments)}
+                    </div>
                 </div>
             );   
         }
